@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import com.jakewharton.u2020.data.Injector;
 import com.jakewharton.u2020.data.LumberYard;
 import com.jakewharton.u2020.ui.ActivityHierarchyServer;
-import dagger.ObjectGraph;
 import javax.inject.Inject;
 import net.danlew.android.joda.JodaTimeAndroid;
 import timber.log.Timber;
@@ -13,7 +12,7 @@ import timber.log.Timber;
 import static timber.log.Timber.DebugTree;
 
 public final class U2020App extends Application {
-  private ObjectGraph objectGraph;
+  private U2020AppComponent component;
 
   @Inject ActivityHierarchyServer activityHierarchyServer;
   @Inject LumberYard lumberYard;
@@ -29,8 +28,8 @@ public final class U2020App extends Application {
       // TODO Timber.plant(new CrashlyticsTree());
     }
 
-    objectGraph = ObjectGraph.create(Modules.list(this));
-    objectGraph.inject(this);
+    component = buildComponent();
+    component.inject(this);
 
     lumberYard.cleanUp();
     Timber.plant(lumberYard.tree());
@@ -38,9 +37,13 @@ public final class U2020App extends Application {
     registerActivityLifecycleCallbacks(activityHierarchyServer);
   }
 
+  protected U2020AppComponent buildComponent() {
+    return U2020AppComponent.Builder.build(this);
+  }
+
   @Override public Object getSystemService(@NonNull String name) {
-    if (Injector.matchesService(name)) {
-      return objectGraph;
+    if (Injector.matchesService(name, U2020AppComponent.class)) {
+      return component;
     }
     return super.getSystemService(name);
   }

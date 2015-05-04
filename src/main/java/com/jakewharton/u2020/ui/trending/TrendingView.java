@@ -29,6 +29,7 @@ import com.jakewharton.u2020.data.api.Sort;
 import com.jakewharton.u2020.data.api.model.RepositoriesResponse;
 import com.jakewharton.u2020.data.api.model.Repository;
 import com.jakewharton.u2020.data.api.transforms.SearchResultToRepositoryList;
+import com.jakewharton.u2020.ui.MainActivityComponent;
 import com.jakewharton.u2020.ui.misc.BetterViewAnimator;
 import com.jakewharton.u2020.ui.misc.DividerItemDecoration;
 import com.jakewharton.u2020.ui.misc.EnumAdapter;
@@ -69,7 +70,7 @@ public final class TrendingView extends LinearLayout
   public TrendingView(Context context, AttributeSet attrs) {
     super(context, attrs);
     if (!isInEditMode()) {
-      Injector.obtain(context).inject(this);
+      Injector.obtain(context, MainActivityComponent.class).inject(this);
     }
 
     dividerPaddingStart =

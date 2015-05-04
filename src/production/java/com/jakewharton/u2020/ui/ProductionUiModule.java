@@ -2,14 +2,15 @@ package com.jakewharton.u2020.ui;
 
 import dagger.Module;
 import dagger.Provides;
+
 import javax.inject.Singleton;
 
 @Module
-public final class InternalReleaseUiModule {
-  @Provides @Singleton AppContainer provideAppContainer(
-      TelescopeAppContainer telescopeAppContainer) {
-    return telescopeAppContainer;
-  }
+public final class ProductionUiModule {
+    @Provides @Singleton
+    AppContainer provideAppContainer() {
+        return AppContainer.DEFAULT;
+    }
 
     @Provides @Singleton
     ActivityHierarchyServer provideActivityHierarchyServer() {
