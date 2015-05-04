@@ -1,12 +1,12 @@
 package com.jakewharton.u2020.ui;
 
-import com.jakewharton.u2020.U2020AppComponent;
+import com.jakewharton.u2020.U2020Component;
 import com.jakewharton.u2020.ui.trending.TrendingView;
 import dagger.Component;
 
 @ActivityScope
 @Component(
-        dependencies = U2020AppComponent.class,
+        dependencies = U2020Component.class,
         modules = MainActivityModule.class
 )
 public interface MainActivityComponent {

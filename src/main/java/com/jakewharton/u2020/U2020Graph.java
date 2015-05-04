@@ -5,7 +5,7 @@ import com.jakewharton.u2020.data.api.GithubService;
 import com.jakewharton.u2020.ui.AppContainer;
 import com.squareup.picasso.Picasso;
 
-public interface U2020AppGraph {
+public interface U2020Graph {
     void inject(U2020App app);
 
     GithubService githubService();

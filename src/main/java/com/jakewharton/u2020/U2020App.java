@@ -12,7 +12,7 @@ import timber.log.Timber;
 import static timber.log.Timber.DebugTree;
 
 public final class U2020App extends Application {
-  private U2020AppComponent component;
+  private U2020Component component;
 
   @Inject ActivityHierarchyServer activityHierarchyServer;
   @Inject LumberYard lumberYard;
@@ -37,12 +37,12 @@ public final class U2020App extends Application {
     registerActivityLifecycleCallbacks(activityHierarchyServer);
   }
 
-  protected U2020AppComponent buildComponent() {
-    return U2020AppComponent.Builder.build(this);
+  protected U2020Component buildComponent() {
+    return U2020Component.Builder.build(this);
   }
 
   @Override public Object getSystemService(@NonNull String name) {
-    if (Injector.matchesService(name, U2020AppComponent.class)) {
+    if (Injector.matchesService(name, U2020Component.class)) {
       return component;
     }
     return super.getSystemService(name);

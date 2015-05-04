@@ -16,7 +16,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.jakewharton.u2020.R;
-import com.jakewharton.u2020.U2020AppComponent;
+import com.jakewharton.u2020.U2020Component;
 import com.jakewharton.u2020.data.Injector;
 import javax.inject.Inject;
 
@@ -42,7 +42,7 @@ public final class MainActivity extends Activity {
 
     // Explicitly reference the application object since we don't want to match our own injector.
     component = DaggerMainActivityComponent.builder()
-            .u2020AppComponent(Injector.obtain(getApplicationContext(), U2020AppComponent.class))
+            .u2020Component(Injector.obtain(getApplicationContext(), U2020Component.class))
             .mainActivityModule(new MainActivityModule(this))
             .build();
     component.inject(this);
